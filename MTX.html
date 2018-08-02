@@ -213,8 +213,15 @@
 	<div class="set">
 		<label>投資終了每年獲取現金：<input type="number" id="max_end" value="0">元</label>
 		<label>投資期間獲取現金流總計：<input type="number" id="totle_cash" value="0">點</label>
-		<br>
-		本頁面網址：<a href="https://totoroliu0929.github.io/tools/MTX.html">https://totoroliu0929.github.io/tools/MTX.html</a>
+	</div>
+	<h2>相關說明</h2>
+	<div class="set">
+		<ul>
+			<li>不賣出模式計算時，該年度比前年度持有張數少時，自動補足張數。</li>
+			<li>強制購買張數不賣出模式計算時，該年度少於之前強制購買張數的總合時，自動補足張數。</li>
+			<li>修改購入張數與強制購買張數時，自動切回自由操作模式。</li>
+			<li>本頁面網址：<a href="https://totoroliu0929.github.io/tools/MTX.html">https://totoroliu0929.github.io/tools/MTX.html</a></li>
+		</ul>
 	</div>
 	<script type="text/javascript">
 		$(function(){
@@ -362,7 +369,7 @@
 					var num = parseInt($("tr:nth-of-type("+i+") .num").val());
 					var must_num = parseInt($("tr:nth-of-type("+i+") .must_num").val());
 					var price = parseInt($("tr:nth-of-type("+i+") .price").val());
-					var cash = parseInt($(".cash").val());
+					var cash = parseInt($("tr:nth-of-type("+i+") .cash").val());
 					var diff = parseInt($("tr:nth-of-type("+i+") td:nth-of-type(5)").text());
 					if(i==1){
 						if(mode != 0){
