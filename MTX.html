@@ -310,8 +310,10 @@
 					//var must_num = parseInt($("#must_num").val());
 					if(i==1 && $("#first_must_num").val()!=0){
 						var must_num = parseInt($("#first_must_num").val());
+						$("tr:nth-of-type("+i+") .must_num").val(must_num);
 					}else{
 						var must_num = parseInt($("#must_num").val());
+						$("tr:nth-of-type("+i+") .must_num").val(must_num);
 					}
 					if(i==1 && $("tr:nth-of-type("+i+") .num").val()==""){
 						$("tr:nth-of-type("+i+") .num").val(0);
@@ -320,7 +322,7 @@
 							$("tr:nth-of-type("+i+") .num").val(totle_num);
 						}
 					}
-					totle_num = parseInt($("tr:nth-of-type("+i+") .num").val()) + must_num;
+					totle_num = parseInt($("tr:nth-of-type("+i+") .num").val()) + parseInt($("tr:nth-of-type("+i+") .must_num").val());
 				}
 				calculation();
 			})
@@ -333,8 +335,10 @@
 					//var must_num = parseInt($("#must_num").val());
 					if(i==1 && $("#first_must_num").val()!=0){
 						must_num = parseInt($("#first_must_num").val());
+						$("tr:nth-of-type("+i+") .must_num").val(must_num);
 					}else{
 						must_num = parseInt($("#must_num").val());
+						$("tr:nth-of-type("+i+") .must_num").val(must_num);
 					}
 
 					if(i==1 && $("tr:nth-of-type("+i+") .num").val()==""){
@@ -344,7 +348,7 @@
 							$("tr:nth-of-type("+i+") .num").val(totle_num);
 						}
 					}
-					totle_num += must_num;
+					totle_num += parseInt($("tr:nth-of-type("+i+") .must_num").val());
 				}
 				calculation();
 			})
