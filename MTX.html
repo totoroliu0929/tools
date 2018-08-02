@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>小台指投資計算</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link rel="shortcut icon" href="" />
+	<meta http-equiv="X-XSS-Protection" content="1;mode=block" />
+	<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+	<meta http-equiv="Expires" content="Mon,4 May 2015 00:20:00 GMT" />
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<style type="text/css">
+	table, .set, h2{
+		width: 800px;
+		margin: 0 auto;
+		line-height: 30px;
+	}
+	h2{
+		font-size: 18px;
+		border-bottom: 1px solid #999;
+		padding-top: 20px;
+	}
+	tr{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-top:  1px solid #ddd;
+	}
+	th, td{
+		display: block;
+		width: 25%;
+		text-align: center;
+		line-height: 20px;
+		height: 20px;
+		margin: 10px 0;
+		border-left:  1px dashed #ccc;
+		border-right:  1px dashed #ccc;
+	}
+	td input{
+		width: 60px;
+	}
+	.num + span{
+		display: none;
+	}
+	td input.must_num{
+		width: 25px;
+		display: none;
+	}
+	input{
+		border-width: 0;
+		border-bottom: 0px solid #ccc;
+		text-align: center;
+	}
+	.set label{
+		margin-right: 20px;
+	}
+	.set label input:not([type="radio"]), .num, .price_s, .price, .cash{
+		width: 60px;
+		border-bottom:  1px solid #ccc;
+	}
+	</style>
+</head>
+<body>
+	<h2>設定</h2>
+	<div class="set">
+		<label>安全氣囊：<input type="number" id="m_safe" value=2000>點</label>
+		<label>原始總資產：<input type="number" id="start_m" value=100>萬</label>
+		<label>起始可買：<input type="number" id="start_num">張</label>
+		<label>每點價值：<input type="number" id="point" value=50>元</label>
+		<br>
+		<label>每年強制購買張數：<input type="number" id="must_num" value="0">張</label>
+		<label>首年強制購買張數：<input type="number" id="first_must_num" value="0">張</label>
+		※強制購買不扣除總資產
+		<br>
+		<label><input type="radio" name="type" id="freedom" value="0" checked>自由操作</label>
+		<label><input type="radio" name="type" id="not_sale" value="1">不賣出</label>
+		<label><input type="radio" name="type" id="must_not_sale" value="2">強制購買張數不賣出</label>
+		<label><input type="radio" name="type" id="buy_max" value="3">自動購買最大單位</label>
+	</div>
+	<h2>計算</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>買入價</th>
+				<th>購買張數</th>
+				<th>賣出價</th>
+				<th>現金流</th>
+				<th>價差</th>
+				<th>現金流價值</th>
+				<th>總資產</th>
+				<th>最大單位</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><labal><input type="number" class="price_s" value="7681"></labal></td>
+				<td><label><input type="number" class="num"><span>+</span><input type="number" class="must_num" readonly></label></td>
+				<td><labal><input type="number" class="price" value="7989"></td>
+				<td><labal><input type="number" class="cash" value="202"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><labal><input type="number" class="price_s" value="7989"></labal></td>
+				<td><label><input type="number" class="num"><span>+</span><input type="number" class="must_num" readonly></label></td>
+				<td><labal><input type="number" class="price" value="4623"></td>
+				<td><labal><input type="number" class="cash" value="743"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><labal><input type="number" class="price_s" value="4623"></labal></td>
+				<td><label><input type="number" class="num"><span>+</span><input type="number" class="must_num" readonly></label></td>
+				<td><labal><input type="number" class="price" value="7699"></td>
+				<td><labal><input type="number" class="cash" value="719"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><labal><input type="number" class="price_s" value="7699"></labal></td>
+				<td><label><input type="number" class="num"><span>+</span><input type="number" class="must_num" readonly></label></td>
+				<td><labal><input type="number" class="price" value="8774"></td>
+				<td><labal><input type="number" class="cash" value="383"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><labal><input type="number" class="price_s" value="8774"></labal></td>
+				<td><label><input type="number" class="num"><span>+</span><input type="number" class="must_num" readonly></label></td>
+				<td><labal><input type="number" class="price" value="6960"></td>
+				<td><labal><input type="number" class="cash" value="522"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><labal><input type="number" class="price_s" value="6960"></labal></td>
+				<td><label><input type="number" class="num"><span>+</span><input type="number" class="must_num" readonly></label></td>
+				<td><labal><input type="number" class="price" value="7664"></td>
+				<td><labal><input type="number" class="cash" value="433"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><labal><input type="number" class="price_s" value="7664"></labal></td>
+				<td><label><input type="number" class="num"><span>+</span><input type="number" class="must_num" readonly></label></td>
+				<td><labal><input type="number" class="price" value="8332"></td>
+				<td><labal><input type="number" class="cash" value="560"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><labal><input type="number" class="price_s" value="8332"></labal></td>
+				<td><label><input type="number" class="num"><span>+</span><input type="number" class="must_num" readonly></label></td>
+				<td><labal><input type="number" class="price" value="8861"></td>
+				<td><labal><input type="number" class="cash" value="213"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><labal><input type="number" class="price_s" value="8861"></labal></td>
+				<td><label><input type="number" class="num"><span>+</span><input type="number" class="must_num" readonly></label></td>
+				<td><labal><input type="number" class="price" value="8170"></td>
+				<td><labal><input type="number" class="cash" value="335"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><labal><input type="number" class="price_s" value="8170"></labal></td>
+				<td><label><input type="number" class="num"><span>+</span><input type="number" class="must_num" readonly></label></td>
+				<td><labal><input type="number" class="price" value="9224"></td>
+				<td><labal><input type="number" class="cash" value="819"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><labal><input type="number" class="price_s" value="9224"></labal></td>
+				<td><label><input type="number" class="num"><span>+</span><input type="number" class="must_num" readonly></label></td>
+				<td><labal><input type="number" class="price" value="10636"></td>
+				<td><labal><input type="number" class="cash" value="418"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+	<h2>結算</h2>
+	<div class="set">
+		<label>投資終了每年獲取現金：<input type="number" id="max_end" value="0">元</label>
+		<label>投資期間獲取現金流總計：<input type="number" id="totle_cash" value="0">點</label>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			rediff();
+			$(".num").change(function(){
+				calculation();
+				$("input:radio[name=type][value='0']").prop("checked", true);
+			})
+			$(".price_s").change(function(){
+				if(parseInt($(this).val())<parseInt($("#m_safe").val())){
+					$(this).val($("tr:nth-of-type("+$(this).parents("tr").index()+") .price").val());
+					alert("第"+i+"年指數小於安全氣囊（"+$("#m_safe").val()+"點）");
+					return false;
+				}
+				if($(this).parents("tr").index() != 0){
+					$("tr:nth-of-type("+$(this).parents("tr").index()+") .price").val($(this).val());
+				}
+				rediff();
+				calculation();
+			})
+			$(".price").change(function(){
+				if(parseInt($(this).val())<parseInt($("#m_safe").val())){
+					$(this).val($("tr:nth-of-type("+($(this).parents("tr").index()+2)+") .price_s").val());
+					alert("第"+i+"年指數小於安全氣囊（"+$("#m_safe").val()+"點）");
+					return false;
+				}
+				if($(this).parents("tr").index() != $("tbody tr").size() - 1 ){
+					$("tr:nth-of-type("+($(this).parents("tr").index()+2)+") .price_s").val($(this).val());
+				}
+				rediff();
+				calculation();
+			})
+			$("#must_num").change(function(){
+				$("input:radio[name=type][value='0']").prop("checked", true);
+				if($(this).val()>0){
+					$(".must_num").val($(this).val()).show().siblings("span").show();
+				}else{
+					$(this).val(0);
+					$(".must_num").val(0).hide().siblings("span").hide();
+					if($("#first_must_num").val()>0){
+						$("tr:nth-of-type(1) .must_num").val($("#first_must_num").val()).show().siblings("span").show();
+					}
+				}
+				calculation();
+			})
+			$("#first_must_num").change(function(){
+				$("input:radio[name=type][value='0']").prop("checked", true);
+				if($(this).val()>0){
+					$("tr:nth-of-type(1) .must_num").val($(this).val()).show().siblings("span").show();
+				}else{
+					$(this).val(0);
+					$("tr:nth-of-type(1) .must_num").val(0).hide().siblings("span").hide();
+					if($("#must_num").val()>0){
+						$("tr:nth-of-type(1) .must_num").val($("#must_num").val()).show().siblings("span").show();
+					}
+				}
+				calculation();
+			})
+			$("#m_safe, #start_m, #point, .cash").change(function(){
+				rediff();
+				calculation();
+			})
+			$("#not_sale").on("click",function(){
+				var size = $("tbody tr").size();
+				var totle_num = 0;
+				for(var i=1;i<=size;i++){
+					var num = parseInt($("tr:nth-of-type("+i+") .num").val());
+					//var must_num = parseInt($("#must_num").val());
+					if(i==1 && $("#first_must_num").val()!=0){
+						var must_num = parseInt($("#first_must_num").val());
+					}else{
+						var must_num = parseInt($("#must_num").val());
+					}
+					if(i==1 && $("tr:nth-of-type("+i+") .num").val()==""){
+						$("tr:nth-of-type("+i+") .num").val(0);
+					}else{
+						if(num < totle_num  || $("tr:nth-of-type("+i+") .num").val()==""){
+							$("tr:nth-of-type("+i+") .num").val(totle_num);
+						}
+					}
+					totle_num = parseInt($("tr:nth-of-type("+i+") .num").val()) + must_num;
+				}
+				calculation();
+			})
+			$("#must_not_sale").on("click",function(){
+				var size = $("tbody tr").size();
+				var totle_num = 0;
+				var must_num = 0;
+				for(var i=1;i<=size;i++){
+					var num = parseInt($("tr:nth-of-type("+i+") .num").val());
+					//var must_num = parseInt($("#must_num").val());
+					if(i==1 && $("#first_must_num").val()!=0){
+						must_num = parseInt($("#first_must_num").val());
+					}else{
+						must_num = parseInt($("#must_num").val());
+					}
+
+					if(i==1 && $("tr:nth-of-type("+i+") .num").val()==""){
+						$("tr:nth-of-type("+i+") .num").val(0);
+					}else{
+						if(num < totle_num || $("tr:nth-of-type("+i+") .num").val()==""){
+							$("tr:nth-of-type("+i+") .num").val(totle_num);
+						}
+					}
+					totle_num += must_num;
+				}
+				calculation();
+			})
+			$("#buy_max").on("click",function(){
+				calculation($("tbody tr").size());
+			})
+			function rediff(){
+				var point = parseInt($("#point").val());
+				var safe = parseInt($("#m_safe").val());
+				var start = parseInt($("#start_m").val()) * 10000;
+				$("#start_num").val(Math.floor(start / ((parseInt($("tr:nth-of-type(1) .price_s").val()) - safe)*point)));
+				$("tbody tr").each(function(){
+					$(this).find("td:nth-of-type(5)").text($(this).find(".price").val() - $(this).find(".price_s").val());
+					if($(this).find(".must_num").val() == ""){
+						if($(this).index()==0 && $(".first_must_num").val()!=0){
+							$(this).find(".must_num").val($("#first_must_num").val());
+						}else{
+							$(this).find(".must_num").val($("#must_num").val());
+						}
+					}
+				})
+			}
+			function calculation(index){
+				var point = parseInt($("#point").val());
+				var mode = index || 0;
+				var totle_cash = 0;
+				var full_index = 0;
+				for(var i=1;i<=$("tbody tr").size();i++){
+					if($("tr:nth-of-type("+i+") .num").val()!=""){
+						full_index = i;
+					}
+				}
+				index = index || full_index;
+				for(var i=1;i<=index;i++){
+					if($("tr:nth-of-type("+i+") .num").val()==""){
+						$("tr:nth-of-type("+i+") .num").val(0);
+					}
+					var type = $("input:radio[type='radio']:checked").val();
+					var safe = parseInt($("#m_safe").val());
+					var num = parseInt($("tr:nth-of-type("+i+") .num").val());
+					var must_num = parseInt($("tr:nth-of-type("+i+") .must_num").val());
+					var price = parseInt($("tr:nth-of-type("+i+") .price").val());
+					var cash = parseInt($(".cash").val());
+					var diff = parseInt($("tr:nth-of-type("+i+") td:nth-of-type(5)").text());
+					if(i==1){
+						if(mode != 0){
+							$("tr:nth-of-type("+i+") .num").val($("#start_num").val());
+							num = parseInt($("#start_num").val());
+						}
+						var start = parseInt($("#start_m").val()) * 10000;
+						if( num > parseInt($("#start_num").val()) ){
+							$("tr:nth-of-type("+i+") .num").val("");
+							alert("第"+i+"年可購買最大張數："+$("#start_num").val());
+							return false;
+						}
+					}else{
+						if(mode != 0){
+							$("tr:nth-of-type("+i+") .num").val($("tr:nth-of-type("+(i-1)+") td:nth-of-type(8)").text());
+							num = parseInt($("tr:nth-of-type("+i+") .num").val());
+						}
+						var start = parseInt($("tr:nth-of-type("+(i-1)+") td:nth-of-type(7)").text());
+						if( num > parseInt($("tr:nth-of-type("+(i-1)+") td:nth-of-type(8)").text()) ){
+							$("tr:nth-of-type("+i+") .num").val("");
+							alert("第"+i+"年可購買最大張數："+$("tr:nth-of-type("+(i-1)+") td:nth-of-type(8)").text());
+							return false;
+						}
+					}
+					totle_cash += cash;
+					$("tr:nth-of-type("+i+") td:nth-of-type(6)").text((num+must_num) * cash * point);
+					$("tr:nth-of-type("+i+") td:nth-of-type(7)").text(start + (num * (cash+diff) * point) + (must_num * (price - safe) *point ) );
+					$("tr:nth-of-type("+i+") td:nth-of-type(8)").text(Math.floor( (start + (num * (cash+diff) * point)) / ((price - safe) *point) ) + must_num );
+					//console.log((price - safe) *point);
+					if(i==index){
+						$("#max_end").val((Math.floor( (start + (num * (cash+diff) * point)) / ((price - safe) *point) ) + must_num)* point *500);
+						$("#totle_cash").val(totle_cash);
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>
