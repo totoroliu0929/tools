@@ -16,10 +16,13 @@
 		margin: 0 auto;
 		line-height: 30px;
 	}
-	h2{
+	h1, h2{
 		font-size: 18px;
 		border-bottom: 1px solid #999;
 		padding-top: 20px;
+	}
+	h1{
+		padding-left: calc(50% - 400px);
 	}
 	tr{
 		display: flex;
@@ -62,6 +65,7 @@
 	</style>
 </head>
 <body>
+	<h1>小台指投資計算</h1>
 	<h2>設定</h2>
 	<div class="set">
 		<label>安全氣囊：<input type="number" id="m_safe" value=2000>點</label>
@@ -209,6 +213,8 @@
 	<div class="set">
 		<label>投資終了每年獲取現金：<input type="number" id="max_end" value="0">元</label>
 		<label>投資期間獲取現金流總計：<input type="number" id="totle_cash" value="0">點</label>
+		<br>
+		本頁面網址：<a href="https://totoroliu0929.github.io/tools/MTX.html">https://totoroliu0929.github.io/tools/MTX.html</a>
 	</div>
 	<script type="text/javascript">
 		$(function(){
