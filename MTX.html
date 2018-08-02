@@ -225,6 +225,7 @@
 	<div class="set">
 		<label>投資終了每年獲取現金：<input type="number" id="max_end" value="0">元</label>
 		<label>投資期間獲取現金流總計：<input type="number" id="totle_cash" value="0">點</label>
+		<label>現金流價值總計：<input type="number" id="totle_cash_p" value="0">元</label>
 	</div>
 	<h2>相關說明</h2>
 	<div class="set">
@@ -423,6 +424,7 @@
 					if(i==index){
 						$("#max_end").val((Math.floor( (start + (num * (cash+diff) * point)) / ((price - safe) *point) ) + must_num)* point *500);
 						$("#totle_cash").val(totle_cash);
+						$("#totle_cash_p").val(totle_cash* point);
 					}
 				}
 			}
