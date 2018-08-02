@@ -11,6 +11,17 @@
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<style type="text/css">
+	/*body{
+		font-size: 10px;
+		color: #ccc;
+	}
+	h1, h2{
+		display: none;
+	}
+	td{
+		color: #000;
+		font-size: 15px;
+	}*/
 	table, .set, h2{
 		width: 800px;
 		margin: 0 auto;
@@ -221,6 +232,7 @@
 			<li>不賣出模式計算時，該年度比前年度持有張數少時，自動補足張數。</li>
 			<li>強制購買張數不賣出模式計算時，該年度少於之前強制購買張數的總合時，自動補足張數。</li>
 			<li>修改購入張數與強制購買張數時，自動切回自由操作模式。</li>
+			<li>買入價與賣出價低於安全氣囊時，自動填入原值。</li>
 			<li>本頁面網址：<a href="https://totoroliu0929.github.io/tools/MTX.html">https://totoroliu0929.github.io/tools/MTX.html</a></li>
 		</ul>
 	</div>
@@ -233,8 +245,9 @@
 			})
 			$(".price_s").change(function(){
 				if(parseInt($(this).val())<parseInt($("#m_safe").val())){
-					$(this).val($("tr:nth-of-type("+$(this).parents("tr").index()+") .price").val());
-					alert("第"+i+"年指數小於安全氣囊（"+$("#m_safe").val()+"點）");
+					//$(this).val($("tr:nth-of-type("+$(this).parents("tr").index()+") .price").val());
+					$(this).val($(this).attr("original"));
+					alert("指數小於安全氣囊（"+$("#m_safe").val()+"點）");
 					return false;
 				}
 				if($(this).parents("tr").index() != 0){
@@ -245,8 +258,9 @@
 			})
 			$(".price").change(function(){
 				if(parseInt($(this).val())<parseInt($("#m_safe").val())){
-					$(this).val($("tr:nth-of-type("+($(this).parents("tr").index()+2)+") .price_s").val());
-					alert("第"+i+"年指數小於安全氣囊（"+$("#m_safe").val()+"點）");
+					//$(this).val($("tr:nth-of-type("+($(this).parents("tr").index()+2)+") .price_s").val());
+					$(this).val($(this).attr("original"));
+					alert("指數小於安全氣囊（"+$("#m_safe").val()+"點）");
 					return false;
 				}
 				if($(this).parents("tr").index() != $("tbody tr").size() - 1 ){
@@ -339,6 +353,12 @@
 				var safe = parseInt($("#m_safe").val());
 				var start = parseInt($("#start_m").val()) * 10000;
 				$("#start_num").val(Math.floor(start / ((parseInt($("tr:nth-of-type(1) .price_s").val()) - safe)*point)));
+				$(".price_s").each(function(){
+					$(this).attr("original",$(this).val());
+				})
+				$(".price").each(function(){
+					$(this).attr("original",$(this).val());
+				})
 				$("tbody tr").each(function(){
 					$(this).find("td:nth-of-type(5)").text($(this).find(".price").val() - $(this).find(".price_s").val());
 					if($(this).find(".must_num").val() == ""){
